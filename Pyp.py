@@ -1,6 +1,3 @@
-
-    
-  
 def print_board(board):
   print(board['Top-L'] + '|' + board['Top-M'] + '|' + board['Top-R'])
   print('-+-+-')
@@ -103,9 +100,10 @@ made = []
 
 print('Hello! Welcom to X-O game!')
 print()
-
 name1 = input('Enter first player name: ')
-name2 = input('Enter second player name: ')
+name2 = name1
+while name2 == name1:
+  name2 = input('Enter second player name: ')
 print()
 print('Great!')
 print()
@@ -139,3 +137,7 @@ if win != '':
   print('Congratulations! ' + win + ' wins!')
 else:
   print('Nichya!')
+
+
+
+
