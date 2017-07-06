@@ -1,7 +1,7 @@
 class XOs(object):
   
   def __init__(self,a_board):
-    print('Hello! Welcom to XOs game!')
+    print('Hello! Welcom to X-O game!')
     print()
     global name1
     global name2
