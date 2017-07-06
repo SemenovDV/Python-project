@@ -29,18 +29,25 @@ class XOs(object):
   def addItem(self,board,place,item):
     board[place] = item
     
-  def stroke(self,turn):
+  def stroke(self,turn,board):
+    global It
     if turn % 2 ==0:
-      global It
-      print('Now ' + name1 + ' stroke!')
+      print('Now ' + name1 + '`s stroke!')
       print('Put \'X\' on some place: ')
-      inp = input()
       It = 'X'
     else:
-      print('Now ' + name2 + ' stroke!')
+      print('Now ' + name2 + '`s stroke!')
       print('Put \'O\' on some place: ')
-      inp = input()
       It = 'O'
+    
+    inp = ''
+      
+    while inp not in board.keys() or inp in made:
+      inp = input('Please type place: ')
+      if inp == 'exit': break
+    
+    
+    made.append(inp)
     return inp
     
   def checkWin(self,board):
@@ -106,13 +113,20 @@ class XOs(object):
 theboard = {'Top-L':' ','Top-M':' ','Top-R':' ',
           'Mid-L':' ', 'Mid-M':' ','Mid-R':' ',
           'Bot-L':' ', 'Bot-M':' ', 'Bot-R':' '}
+          
+global made 
+made = []
 
 game = XOs(theboard)
 game.print_board(theboard)
 
 count = 0
+win = ''
 while count <9:
-  game.addItem(theboard, game.stroke(count), It) 
+  strok = game.stroke(count,theboard)
+  if strok == 'exit':
+    break
+  game.addItem(theboard, strok, It) 
   game.print_board(theboard)
   
   win = game.checkWin(theboard)
@@ -120,8 +134,11 @@ while count <9:
   if  win != '':
     break
   count +=1
-print('Congratulations! ' + win + ' wins!')
-
+  
+if win != '':
+  print('Congratulations! ' + win + ' wins!')
+else:
+  print('Nichya!')
 
 
 
